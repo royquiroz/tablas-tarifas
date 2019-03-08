@@ -1,46 +1,64 @@
-<div class="container-fluid">
-  <h3>INPC</h3>
+<div class="container">
+  <h3>
+    <strong>INPC</strong><small>{{ id_request }}</small>
+  </h3>
   <div class="row">
     <div class="col-5">
       <form class="example-form">
         <div>
-          <mat-form-field>
-            <mat-select placeholder="Mes">
-              <mat-option *ngFor="let mes of meses" value="{{ mes.valor }}">{{
-                mes.name
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <select
+            class="browser-default custom-select"
+            name="mes"
+            [(ngModel)]="info[0].valores[0].nombre"
+          >
+            <option *ngFor="let mes of meses" value="{{ mes.valor }}">{{
+              mes.name
+            }}</option>
+          </select>
         </div>
-        <div>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Valor"
-              value="{{ request[0].valores[0].valor }}"
-            />
-          </mat-form-field>
+        <div class="md-form">
+          <input
+            mdbInput
+            type="text"
+            class="form-control"
+            name="inpc"
+            [(ngModel)]="info[0].valores[0].valor"
+          />
+          <label>INPC</label>
         </div>
-        <div>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Año"
-              value="{{ request[0].where[0].valor }}"
-            />
-          </mat-form-field>
+        <div class="md-form">
+          <input
+            mdbInput
+            type="text"
+            class="form-control"
+            name="año"
+            [(ngModel)]="info[0].where[0].valor"
+          />
+          <label>Año</label>
         </div>
-        <div>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="dof"
-              value="{{ request[0].where[1].valor }}"
-            />
-          </mat-form-field>
+        <div class="md-form">
+          <input
+            mdbInput
+            type="text"
+            class="form-control"
+            name="dof"
+            [(ngModel)]="info[0].where[1].valor"
+          />
+          <label>dof</label>
         </div>
-        <button mat-flat-button color="primary">Guardar</button>
+        <button
+          type="submit"
+          mdbBtn
+          color="primary"
+          mdbWavesEffect
+          (click)="newRequest()"
+        >
+          Guardar
+        </button>
       </form>
+      <button type="button" mdbBtn color="success" mdbWavesEffect>
+        Nuevo Enlace
+      </button>
     </div>
     <div class="col-5 offset-md-2">
       <ul>

@@ -5,29 +5,24 @@ import { map } from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class TablasService {
+export class LoginService {
   user_token: string =
     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc2MDgwMDksImF1ZCI6IjgzZDNiZDMxMzM2MDlhNGE5ZTMxM2VhYTI2NzExMjM4YzM3ZWU1YjQiLCJkYXRhIjp7InVzdWFyaW9faWQiOiI3IiwidXN1YXJpbyI6ImFkbWluIiwiY2xhdmUiOiIqNEFDRkUzMjAyQTVGRjVDRjQ2Nzg5OEZDNThBQUIxRDYxNTAyOTQ0MSIsImVtYWlsIjpudWxsfX0.Ty_t8zxT9dv4wgDYWwjAYCPI0O0JTq3E_0rertR60aE";
-  api_url: string = "http://racootest.com/tt/tablasRacoo/public";
-
-  headers: any = {
-    //"Content-Type": "application/x-www-form-urlencoded",
-    "APP-TOKEN": this.user_token
-  };
+  api_url: string = "http://racootest.com/tt/loginRacoo/public";
 
   constructor(private http: HttpClient) {
-    console.log("Tablas Service Listo");
+    console.log("Login Service Listo");
   }
 
-  getAllRequest() {
-    return this.http.get(`${this.api_url}/solicitud/list`, {
-      headers: this.headers
-    });
-  }
-
-  postNewRequest(req: any) {
-    return this.http.post(`${this.api_url}/solicitud/add`, req, {
-      headers: this.headers
-    });
+  getCheckToken() {
+    return this.http
+      .post(`${this.api_url}/token/check`, {
+        token: this.user_token
+      })
+      .pipe(
+        map((data: any) => {
+          return data.result[0];
+        })
+      );
   }
 }
