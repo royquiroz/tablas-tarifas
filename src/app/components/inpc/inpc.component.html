@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <h3>INPC</h3>
+  <div class="row">
+    <div class="col-5">
+      <form class="example-form">
+        <div>
+          <mat-form-field>
+            <mat-select placeholder="Mes">
+              <mat-option *ngFor="let mes of meses" value="{{ mes.valor }}">{{
+                mes.name
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Valor"
+              value="{{ request[0].valores[0].valor }}"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Año"
+              value="{{ request[0].where[0].valor }}"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="dof"
+              value="{{ request[0].where[1].valor }}"
+            />
+          </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary">Guardar</button>
+      </form>
+    </div>
+    <div class="col-5 offset-md-2">
+      <ul>
+        <li *ngFor="let request of requests">
+          <div>{{ request.solicitude_id }}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
