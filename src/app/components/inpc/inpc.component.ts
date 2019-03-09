@@ -11,10 +11,11 @@ import { Helpers } from "../../helpers/helpers";
 export class InpcComponent implements OnInit {
   meses = this.helpers.meses;
   info = this.helpers.informacion;
+  enlace = this.helpers.enlace;
 
   requests: any[] = [];
   request: any = {};
-  id_request: number;
+  id_request: number = 63;
 
   constructor(
     private tablas: TablasService,
@@ -50,5 +51,10 @@ export class InpcComponent implements OnInit {
       console.log(data);
       this.id_request = parseInt(data.result);
     });
+  }
+
+  newLink() {
+    this.enlace.solicitude_id = this.id_request;
+    console.log(this.enlace);
   }
 }

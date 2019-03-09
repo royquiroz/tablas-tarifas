@@ -30,4 +30,6 @@ export class TablasService {
       headers: this.headers
     });
   }
+
+  postNewLink(req: any) {}
 }

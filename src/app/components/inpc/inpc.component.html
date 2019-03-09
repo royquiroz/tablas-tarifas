@@ -56,9 +56,98 @@
           Guardar
         </button>
       </form>
-      <button type="button" mdbBtn color="success" mdbWavesEffect>
+      <button
+        *ngIf="id_request"
+        type="button"
+        mdbBtn
+        color="success"
+        mdbWavesEffect
+        (click)="basicModal.show()"
+      >
         Nuevo Enlace
       </button>
+
+      <!--Modal de enlace nuevo-->
+      <div
+        mdbModal
+        #basicModal="mdbModal"
+        class="modal fade"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myBasicModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close pull-right"
+                aria-label="Close"
+                (click)="basicModal.hide()"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Nuevo Enlace</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div>
+                  <select
+                    class="browser-default custom-select"
+                    name="tipo"
+                    [(ngModel)]="enlace.tipo"
+                  >
+                    <option value="doc">Documento</option>
+                    <option value="link">Link</option>
+                  </select>
+                </div>
+                <div>
+                  <input
+                    type="file"
+                    class="button-file"
+                    name="file"
+                    [(ngModel)]="enlace.file"
+                  />
+                </div>
+                <div class="md-form">
+                  <input
+                    mdbInput
+                    type="text"
+                    class="form-control"
+                    name="enlace"
+                    [(ngModel)]="enlace.enlace"
+                  />
+                  <label>Enlace</label>
+                </div>
+                <div class="md-form">
+                  <textarea
+                    type="text"
+                    id="form7"
+                    class="md-textarea form-control"
+                    name="descripcion"
+                    [(ngModel)]="enlace.descripcion"
+                    mdbInput
+                  ></textarea>
+                  <label for="form7">Descripcion</label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                mdbBtn
+                color="primary"
+                class="relative waves-light"
+                mdbWavesEffect
+                (click)="newLink(); basicModal.hide()"
+              >
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-5 offset-md-2">
       <ul>

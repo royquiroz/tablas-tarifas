@@ -77,4 +77,12 @@ export class Helpers {
       ]
     }
   ];
+
+  enlace: any = {
+    solicitude_id: "",
+    enlace: "",
+    file: "",
+    tipo: "link",
+    descripcion: ""
+  };
 }
