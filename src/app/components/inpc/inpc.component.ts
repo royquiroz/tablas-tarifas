@@ -42,7 +42,7 @@ export class InpcComponent implements OnInit {
   allRequests() {
     this.tablas.getAllRequest().subscribe((data: any) => {
       console.log(data);
-      this.requests = data.result;
+      this.requests = data.result.reverse();
     });
   }
 
@@ -60,5 +60,15 @@ export class InpcComponent implements OnInit {
   newLink() {
     this.enlace.solicitude_id = this.id_request;
     console.log(this.enlace);
+    this.tablas.postNewLink(this.enlace).subscribe((data: any) => {
+      console.log("Enlace enviado");
+      console.log(data);
+    });
+  }
+
+  catchRequest(request: any) {
+    console.log(JSON.parse(request.informacion));
+    this.id_request = request.solicitude_id;
+    this.info = JSON.parse(request.informacion);
   }
 }

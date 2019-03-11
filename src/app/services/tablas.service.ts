@@ -31,5 +31,9 @@ export class TablasService {
     });
   }
 
-  postNewLink(req: any) {}
+  postNewLink(req: any) {
+    return this.http.post(`${this.api_url}/enlaces/add`, req, {
+      headers: this.headers
+    });
+  }
 }
