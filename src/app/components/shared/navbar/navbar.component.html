@@ -1,0 +1,30 @@
+<mdb-navbar
+  SideClass="navbar navbar-expand-lg navbar-dark indigo"
+  *ngIf="isAuthenticated()"
+>
+  <links>
+    <a class="navbar-brand" href="#">Hidden brand</a>
+    <ul class="navbar-nav mr-auto mt-lg-0">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['home']">
+          Home
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['inpc']">
+          Link
+        </a>
+      </li>
+    </ul>
+    <button
+      mdbBtn
+      type="button"
+      color="danger"
+      size="sm"
+      mdbWavesEffect
+      (click)="logout()"
+    >
+      Cerrar Sesión
+    </button>
+  </links>
+</mdb-navbar>

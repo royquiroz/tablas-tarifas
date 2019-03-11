@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TablasService } from "../../services/tablas.service";
-import { LoginService } from "../../services/login.service";
+import { AuthService } from "../../services/auth.service";
 import { Helpers } from "../../helpers/helpers";
 
 @Component({
@@ -19,7 +19,7 @@ export class InpcComponent implements OnInit {
 
   constructor(
     private tablas: TablasService,
-    private login: LoginService,
+    private auth: AuthService,
     private helpers: Helpers
   ) {}
 
@@ -29,7 +29,7 @@ export class InpcComponent implements OnInit {
   }
 
   userFillForm() {
-    this.login.getCheckToken().subscribe((data: any) => {
+    this.auth.getCheckToken().subscribe((data: any) => {
       console.log(data);
       this.request.usuario_id_responsable = parseInt(data.usuario_id);
     });

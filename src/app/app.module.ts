@@ -13,9 +13,11 @@ import { AppRoutingModule } from "./app-routing.module";
 //Componentes
 import { AppComponent } from "./app.component";
 import { InpcComponent } from "./components/inpc/inpc.component";
+import { LoginComponent } from "./components/login/login.component";
+import { NavbarComponent } from "./components/shared/navbar/navbar.component";
 
 @NgModule({
-  declarations: [AppComponent, InpcComponent],
+  declarations: [AppComponent, InpcComponent, LoginComponent, NavbarComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

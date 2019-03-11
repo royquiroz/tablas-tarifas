@@ -12,7 +12,7 @@ export class TablasService {
 
   headers: any = {
     //"Content-Type": "application/x-www-form-urlencoded",
-    "APP-TOKEN": this.user_token
+    "APP-TOKEN": localStorage.getItem("currentUser")
   };
 
   constructor(private http: HttpClient) {
