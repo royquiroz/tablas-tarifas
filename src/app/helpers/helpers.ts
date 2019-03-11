@@ -72,7 +72,7 @@ export class Helpers {
         },
         {
           nombre: "dof",
-          valor: ""
+          valor: "2018-09-10"
         }
       ]
     }

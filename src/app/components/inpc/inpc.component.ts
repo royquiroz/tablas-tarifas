@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { TablasService } from "../../services/tablas.service";
 import { AuthService } from "../../services/auth.service";
 import { Helpers } from "../../helpers/helpers";
+import * as moment from "moment";
+moment.locale("es");
 
 @Component({
   selector: "app-inpc",
@@ -26,6 +28,8 @@ export class InpcComponent implements OnInit {
   ngOnInit() {
     this.userFillForm();
     this.allRequests();
+    this.info[0].where[0].valor = moment().format("YYYY");
+    this.info[0].valores[0].nombre = `m0${moment().month()}`;
   }
 
   userFillForm() {

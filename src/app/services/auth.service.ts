@@ -19,6 +19,11 @@ export class AuthService {
 
     return this.http.post(`${this.api_url}/token/new`, body).pipe(
       map((data: any) => {
+        console.log(data);
+
+        if (data.result === null) {
+          return false;
+        }
         localStorage.setItem("currentUser", data.result);
         return true;
       }),
@@ -26,6 +31,14 @@ export class AuthService {
         return throwError(err);
       })
     );
+  }
+
+  private saveToken(token: any) {
+    if (token !== null) {
+      localStorage.setItem("currentUser", token);
+      return true;
+    }
+    return false;
   }
 
   getCheckToken() {
