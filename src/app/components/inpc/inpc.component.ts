@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { TablasService } from "../../services/tablas.service";
 import { AuthService } from "../../services/auth.service";
 import { Helpers } from "../../helpers/helpers";
@@ -22,7 +23,8 @@ export class InpcComponent implements OnInit {
   constructor(
     private tablas: TablasService,
     private auth: AuthService,
-    private helpers: Helpers
+    private helpers: Helpers,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -66,9 +68,7 @@ export class InpcComponent implements OnInit {
     });
   }
 
-  catchRequest(request: any) {
-    console.log(JSON.parse(request.informacion));
-    this.id_request = request.solicitude_id;
-    this.info = JSON.parse(request.informacion);
+  catchRequest(req: any) {
+    this.router.navigate([`inpc/${req.solicitude_id}`]);
   }
 }

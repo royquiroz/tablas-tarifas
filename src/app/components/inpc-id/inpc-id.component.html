@@ -1,0 +1,55 @@
+<div class="container">
+  <div *ngIf="loading" class="row">
+    <div class="col-2 offset-md-5">
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="row">
+    <div class="col-4 offset-md-1">
+      <p><b>Mes</b>: {{ info[0].valores[0].nombre }}</p>
+      <p><b>INPC</b>: {{ info[0].valores[0].valor }}</p>
+      <p><b>Año</b>: {{ info[0].where[0].valor }}</p>
+      <p><b>DOF</b>: {{ info[0].where[1].valor }}</p>
+      <div class="modal-footer">
+        <button
+          *ngIf="
+            request.usuario_id_revision_1 === '0' ||
+            request.usuario_id_revision_2 === '0'
+          "
+          type="button"
+          color="primary"
+          class="relative waves-light"
+          mdbBtn
+          mdbWavesEffect
+          (click)="revision()"
+        >
+          Revision
+        </button>
+        <button
+          *ngIf="
+            request.usuario_id_revision_1 !== '0' ||
+            request.usuario_id_revision_2 !== '0'
+          "
+          type="button"
+          color="primary"
+          class="relative waves-light"
+          mdbBtn
+          mdbWavesEffect
+          (click)="revision()"
+        >
+          Aprobacion
+        </button>
+      </div>
+    </div>
+    <div class="col-m5">
+      <p>
+        r1: {{ request.usuario_id_revision_1 }} r2:
+        {{ request.usuario_id_revision_2 }} ap:
+        {{ request.usuario_id_aprobado }}
+      </p>
+    </div>
+  </div>
+</div>
