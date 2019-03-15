@@ -1,13 +1,27 @@
 <mdb-navbar
-  SideClass="navbar navbar-expand-lg navbar-dark indigo"
+  SideClass="navbar navbar-expand-lg navbar-dark blue"
   *ngIf="isAuthenticated()"
 >
+  <mdb-navbar-brand>
+    <a class="navbar-brand">
+      <img src="assets/img/logo_racoo.png" height="30" alt="logo_racoo" />
+    </a>
+  </mdb-navbar-brand>
   <links>
-    <a class="navbar-brand" href="#">Hidden brand</a>
     <ul class="navbar-nav mr-auto mt-lg-0">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['inpc']">
           INPC
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          UDIS
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          Recargos
         </a>
       </li>
     </ul>

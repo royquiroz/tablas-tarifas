@@ -1,7 +1,4 @@
 <div class="container">
-  <p>
-    <small>{{ id_request }}</small>
-  </p>
   <h3>
     <strong>INPC</strong>
   </h3>
@@ -61,7 +58,7 @@
         </button>
       </form>
       <button
-        *ngIf="id_request"
+        *ngIf="id_request && !hasLink"
         type="button"
         mdbBtn
         color="success"
@@ -70,6 +67,9 @@
       >
         Nuevo Enlace
       </button>
+      <p>
+        <small>{{ id_request }}</small>
+      </p>
 
       <!--Modal de enlace nuevo-->
       <div
@@ -154,16 +154,25 @@
       </div>
     </div>
     <div class="col-5 offset-md-2">
-      <ul>
-        <li *ngFor="let request of requests">
-          <div (click)="catchRequest(request)">
-            <b>id:</b> {{ request.solicitude_id }} <b>rev1:</b>
-            {{ request.usuario_id_revision_1 }} <b>rev2:</b>
-            {{ request.usuario_id_revision_2 }} <b>aprov:</b>
-            {{ request.usuario_id_aprobado }}
-          </div>
-        </li>
-      </ul>
+      <mdb-icon
+        far
+        icon="eye"
+        class="puntero"
+        (click)="isShowRequests = !isShowRequests"
+      ></mdb-icon>
+      <div *ngIf="isShowRequests">
+        <h3>Pendientes por aprobar</h3>
+        <ul>
+          <li *ngFor="let request of requests">
+            <div (click)="catchRequest(request)">
+              <b>id:</b> {{ request.solicitude_id }} <b>rev1:</b>
+              {{ request.usuario_id_revision_1 }} <b>rev2:</b>
+              {{ request.usuario_id_revision_2 }} <b>aprov:</b>
+              {{ request.usuario_id_aprobado }}
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

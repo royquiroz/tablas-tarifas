@@ -15,3 +15,7 @@
 .button-file {
   margin: 2% 0;
 }
+
+.puntero {
+  cursor: pointer;
+}

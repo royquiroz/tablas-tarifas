@@ -55,4 +55,11 @@ export class TablasService {
       headers: this.headers
     });
   }
+
+  getAllLinks() {
+    this.createHeader();
+    return this.http.get(`${this.api_url}/enlaces/list`, {
+      headers: this.headers
+    });
+  }
 }

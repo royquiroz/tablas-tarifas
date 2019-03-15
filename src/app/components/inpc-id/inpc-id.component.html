@@ -13,36 +13,51 @@
       <p><b>INPC</b>: {{ info[0].valores[0].valor }}</p>
       <p><b>Año</b>: {{ info[0].where[0].valor }}</p>
       <p><b>DOF</b>: {{ info[0].where[1].valor }}</p>
-      <div class="modal-footer">
-        <button
-          *ngIf="
-            request.usuario_id_revision_1 === '0' ||
-            request.usuario_id_revision_2 === '0'
-          "
-          type="button"
-          color="primary"
-          class="relative waves-light"
-          mdbBtn
-          mdbWavesEffect
-          (click)="revision()"
-        >
-          Revision
-        </button>
-        <button
-          *ngIf="
-            request.usuario_id_revision_1 !== '0' ||
-            request.usuario_id_revision_2 !== '0'
-          "
-          type="button"
-          color="primary"
-          class="relative waves-light"
-          mdbBtn
-          mdbWavesEffect
-          (click)="revision()"
-        >
-          Aprobacion
-        </button>
-      </div>
+      <button
+        *ngIf="request.usuario_id_revision_1 === '0'"
+        type="button"
+        color="primary"
+        class="relative waves-light"
+        mdbBtn
+        mdbWavesEffect
+        (click)="revision()"
+      >
+        1er Revision
+      </button>
+      <button
+        *ngIf="
+          request.usuario_id_revision_2 === '0' &&
+          request.usuario_id_revision_1 !== '0'
+        "
+        type="button"
+        color="primary"
+        class="relative waves-light"
+        mdbBtn
+        mdbWavesEffect
+        (click)="revision()"
+      >
+        2da Revision
+      </button>
+      <button
+        *ngIf="usuario_id_aprobado === '0'"
+        type="button"
+        color="primary"
+        class="relative waves-light"
+        mdbBtn
+        mdbWavesEffect
+        (click)="revision()"
+      >
+        Aprobacion
+      </button>
+      <button
+        type="button"
+        color="danger"
+        class="relative waves-light"
+        mdbBtn
+        mdbWavesEffect
+      >
+        Denegar Solicitud
+      </button>
     </div>
     <div class="col-m5">
       <p>
@@ -50,6 +65,13 @@
         {{ request.usuario_id_revision_2 }} ap:
         {{ request.usuario_id_aprobado }}
       </p>
+      <ul>
+        <li *ngFor="let link of links">
+          <b>Tipo:</b> {{ link.tipo }} <b>Descripcion:</b>
+          {{ link.descripcion }}
+          <a [href]="link.enlace" target="_blank">enlace</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
