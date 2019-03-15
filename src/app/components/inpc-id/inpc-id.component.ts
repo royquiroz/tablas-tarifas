@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { MatSnackBar } from "@angular/material";
 
 import { TablasService } from "src/app/services/tablas.service";
+import { Helpers } from "../../helpers/helpers";
 
 @Component({
   selector: "app-inpc-id",
@@ -10,17 +11,26 @@ import { TablasService } from "src/app/services/tablas.service";
   styleUrls: ["./inpc-id.component.css"]
 })
 export class InpcIdComponent implements OnInit {
+  meses = this.helpers.meses;
   id: any;
   request: any = {};
   info: any[] = [];
   links: any[] = [];
+
+  negacion: any = {
+    solicitude_id: "",
+    descripcion: ""
+  };
+
+  isEditable: boolean = false;
 
   loading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
     private tablas: TablasService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private helpers: Helpers
   ) {}
 
   ngOnInit() {
@@ -57,6 +67,15 @@ export class InpcIdComponent implements OnInit {
         (link: any) => link.solicitude_id === this.id
       );
       console.log(this.links);
+    });
+  }
+
+  deny() {
+    this.negacion.solicitude_id = this.id;
+    console.log(this.negacion);
+
+    this.tablas.postDeny(this.negacion).subscribe((data: any) => {
+      console.log(data);
     });
   }
 

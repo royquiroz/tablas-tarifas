@@ -62,4 +62,11 @@ export class TablasService {
       headers: this.headers
     });
   }
+
+  postDeny(req: any) {
+    this.createHeader();
+    return this.http.post(`${this.api_url}/solicitud/denegar`, req, {
+      headers: this.headers
+    });
+  }
 }

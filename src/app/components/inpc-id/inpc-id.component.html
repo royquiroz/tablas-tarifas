@@ -9,55 +9,130 @@
 
   <div *ngIf="!loading" class="row">
     <div class="col-4 offset-md-1">
+      <button mat-icon-button color="primary" (click)="revision()">
+        <mdb-icon fas icon="angle-double-right" size="2x"></mdb-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="basicModal.show()">
+        <mdb-icon fas icon="ban" size="2x"></mdb-icon>
+      </button>
+      <div>
+        <form class="example-form">
+          <div>
+            <select
+              class="browser-default custom-select"
+              name="mes"
+              [(ngModel)]="info[0].valores[0].nombre"
+            >
+              <option *ngFor="let mes of meses" value="{{ mes.valor }}">{{
+                mes.name
+              }}</option>
+            </select>
+          </div>
+          <div class="md-form">
+            <input
+              mdbInput
+              type="text"
+              class="form-control"
+              name="dof"
+              [(ngModel)]="info[0].where[1].valor"
+              [ngClass]="{ disabled: true }"
+            />
+            <label>dof</label>
+          </div>
+          <div class="md-form">
+            <input
+              mdbInput
+              type="text"
+              class="form-control"
+              name="año"
+              [(ngModel)]="info[0].where[0].valor"
+              [ngClass]="{ disabled: true }"
+            />
+            <label>Año</label>
+          </div>
+          <div class="md-form">
+            <input
+              mdbInput
+              type="text"
+              class="form-control"
+              name="inpc"
+              [(ngModel)]="info[0].valores[0].valor"
+              [ngClass]="{ disabled: true }"
+            />
+            <label>INPC</label>
+          </div>
+        </form>
+      </div>
       <p><b>Mes</b>: {{ info[0].valores[0].nombre }}</p>
       <p><b>INPC</b>: {{ info[0].valores[0].valor }}</p>
       <p><b>Año</b>: {{ info[0].where[0].valor }}</p>
       <p><b>DOF</b>: {{ info[0].where[1].valor }}</p>
-      <button
-        *ngIf="request.usuario_id_revision_1 === '0'"
-        type="button"
-        color="primary"
-        class="relative waves-light"
-        mdbBtn
-        mdbWavesEffect
-        (click)="revision()"
-      >
-        1er Revision
-      </button>
-      <button
-        *ngIf="
-          request.usuario_id_revision_2 === '0' &&
-          request.usuario_id_revision_1 !== '0'
-        "
-        type="button"
-        color="primary"
-        class="relative waves-light"
-        mdbBtn
-        mdbWavesEffect
-        (click)="revision()"
-      >
-        2da Revision
-      </button>
-      <button
-        *ngIf="usuario_id_aprobado === '0'"
-        type="button"
-        color="primary"
-        class="relative waves-light"
-        mdbBtn
-        mdbWavesEffect
-        (click)="revision()"
-      >
-        Aprobacion
-      </button>
-      <button
+      <!--<button
         type="button"
         color="danger"
         class="relative waves-light"
         mdbBtn
         mdbWavesEffect
+        (click)="basicModal.show()"
       >
-        Denegar Solicitud
-      </button>
+        Denegar
+      </button>-->
+
+      <!-- Modal negacion-->
+      <div
+        mdbModal
+        #basicModal="mdbModal"
+        class="modal fade"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myBasicModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close pull-right"
+                aria-label="Close"
+                (click)="basicModal.hide()"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">
+                Descripción de la cancelacion
+              </h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="md-form">
+                  <textarea
+                    type="text"
+                    id="form7"
+                    class="md-textarea form-control"
+                    name="descripcion"
+                    [(ngModel)]="negacion.descripcion"
+                    mdbInput
+                  ></textarea>
+                  <label for="form7">Descripción</label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                mdbBtn
+                color="danger"
+                class="relative waves-light"
+                mdbWavesEffect
+                (click)="deny(); basicModal.hide()"
+              >
+                Cancelar solicitud
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-m5">
       <p>
