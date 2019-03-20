@@ -9,24 +9,34 @@
 
   <div *ngIf="!loading" class="row">
     <div class="col-4 offset-md-1">
-      <button mat-icon-button color="primary" (click)="revision()">
+      <button mat-icon-button color="primary">
+        <mdb-icon
+          fas
+          icon="pencil-alt"
+          size="2x"
+          (click)="editFields()"
+        ></mdb-icon>
+      </button>
+      <button mat-icon-button color="accent" (click)="revision()">
         <mdb-icon fas icon="angle-double-right" size="2x"></mdb-icon>
       </button>
       <button mat-icon-button color="warn" (click)="basicModal.show()">
         <mdb-icon fas icon="ban" size="2x"></mdb-icon>
       </button>
-      <div>
+      <div class="inpc-form">
         <form class="example-form">
           <div>
-            <select
-              class="browser-default custom-select"
-              name="mes"
-              [(ngModel)]="info[0].valores[0].nombre"
-            >
-              <option *ngFor="let mes of meses" value="{{ mes.valor }}">{{
-                mes.name
-              }}</option>
-            </select>
+            <mat-form-field class="select-width">
+              <mat-label>Mes</mat-label>
+              <mat-select
+                [value]="info[0].valores[0].nombre"
+                [disabled]="isEditable"
+              >
+                <mat-option *ngFor="let mes of meses" value="{{ mes.valor }}">
+                  {{ mes.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="md-form">
             <input
@@ -35,7 +45,7 @@
               class="form-control"
               name="dof"
               [(ngModel)]="info[0].where[1].valor"
-              [ngClass]="{ disabled: true }"
+              [ngClass]="{ disabled: isEditable }"
             />
             <label>dof</label>
           </div>
@@ -46,7 +56,7 @@
               class="form-control"
               name="año"
               [(ngModel)]="info[0].where[0].valor"
-              [ngClass]="{ disabled: true }"
+              [ngClass]="{ disabled: isEditable }"
             />
             <label>Año</label>
           </div>
@@ -57,26 +67,22 @@
               class="form-control"
               name="inpc"
               [(ngModel)]="info[0].valores[0].valor"
-              [ngClass]="{ disabled: true }"
+              [ngClass]="{ disabled: isEditable }"
             />
             <label>INPC</label>
           </div>
+          <button
+            *ngIf="!isEditable"
+            type="submit"
+            mdbBtn
+            color="primary"
+            mdbWavesEffect
+            (click)="newRequest()"
+          >
+            Modificar
+          </button>
         </form>
       </div>
-      <p><b>Mes</b>: {{ info[0].valores[0].nombre }}</p>
-      <p><b>INPC</b>: {{ info[0].valores[0].valor }}</p>
-      <p><b>Año</b>: {{ info[0].where[0].valor }}</p>
-      <p><b>DOF</b>: {{ info[0].where[1].valor }}</p>
-      <!--<button
-        type="button"
-        color="danger"
-        class="relative waves-light"
-        mdbBtn
-        mdbWavesEffect
-        (click)="basicModal.show()"
-      >
-        Denegar
-      </button>-->
 
       <!-- Modal negacion-->
       <div
@@ -125,7 +131,7 @@
                 color="danger"
                 class="relative waves-light"
                 mdbWavesEffect
-                (click)="deny(); basicModal.hide()"
+                (click)="negation(); basicModal.hide()"
               >
                 Cancelar solicitud
               </button>
@@ -140,6 +146,7 @@
         {{ request.usuario_id_revision_2 }} ap:
         {{ request.usuario_id_aprobado }}
       </p>
+      <span *ngIf="links.length <= 0">No hay enlaces en la solicitud</span>
       <ul>
         <li *ngFor="let link of links">
           <b>Tipo:</b> {{ link.tipo }} <b>Descripcion:</b>
@@ -147,6 +154,16 @@
           <a [href]="link.enlace" target="_blank">enlace</a>
         </li>
       </ul>
+      <div
+        *ngFor="let negation of negations"
+        class="alert alert-danger"
+        role="alert"
+      >
+        {{ negation.descripcion }}
+        <p class="p-alert">
+          <b>Fecha:</b> {{ negation.fecha_creacion | date: "shortDate" }}
+        </p>
+      </div>
     </div>
   </div>
 </div>

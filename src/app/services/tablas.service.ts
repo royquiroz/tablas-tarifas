@@ -63,9 +63,16 @@ export class TablasService {
     });
   }
 
-  postDeny(req: any) {
+  postNegation(req: any) {
     this.createHeader();
     return this.http.post(`${this.api_url}/solicitud/denegar`, req, {
+      headers: this.headers
+    });
+  }
+
+  getAllNegations(id: number) {
+    this.createHeader();
+    return this.http.get(`${this.api_url}/solicitud/negaciones/${id}`, {
       headers: this.headers
     });
   }

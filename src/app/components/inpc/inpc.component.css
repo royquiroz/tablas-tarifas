@@ -19,3 +19,7 @@
 .puntero {
   cursor: pointer;
 }
+
+.select-width {
+  width: 100%;
+}

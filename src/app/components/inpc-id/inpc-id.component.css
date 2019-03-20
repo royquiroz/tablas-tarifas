@@ -1,3 +1,15 @@
 .container {
   margin-top: 5%;
 }
+
+.select-width {
+  width: 100%;
+}
+
+.inpc-form {
+  margin-top: 25px;
+}
+
+.p-alert {
+  margin: 0;
+}

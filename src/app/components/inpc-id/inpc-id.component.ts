@@ -4,6 +4,8 @@ import { MatSnackBar } from "@angular/material";
 
 import { TablasService } from "src/app/services/tablas.service";
 import { Helpers } from "../../helpers/helpers";
+import * as moment from "moment";
+moment.locale("es");
 
 @Component({
   selector: "app-inpc-id",
@@ -16,13 +18,14 @@ export class InpcIdComponent implements OnInit {
   request: any = {};
   info: any[] = [];
   links: any[] = [];
+  negations: any[] = [];
 
   negacion: any = {
     solicitude_id: "",
     descripcion: ""
   };
 
-  isEditable: boolean = false;
+  isEditable: boolean = true;
 
   loading: boolean = true;
 
@@ -39,6 +42,7 @@ export class InpcIdComponent implements OnInit {
     });
     this.getRequest();
     this.getLinks();
+    this.getNegations();
   }
 
   getRequest() {
@@ -70,11 +74,11 @@ export class InpcIdComponent implements OnInit {
     });
   }
 
-  deny() {
+  negation() {
     this.negacion.solicitude_id = this.id;
     console.log(this.negacion);
 
-    this.tablas.postDeny(this.negacion).subscribe((data: any) => {
+    this.tablas.postNegation(this.negacion).subscribe((data: any) => {
       console.log(data);
     });
   }
@@ -82,6 +86,17 @@ export class InpcIdComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 5000
+    });
+  }
+
+  editFields() {
+    this.isEditable = !this.isEditable;
+  }
+
+  getNegations() {
+    this.tablas.getAllNegations(this.id).subscribe((data: any) => {
+      this.negations = data.result;
+      console.log(data);
     });
   }
 }
