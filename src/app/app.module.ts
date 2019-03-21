@@ -15,10 +15,16 @@ import { AppComponent } from "./app.component";
 import { InpcComponent } from "./components/inpc/inpc.component";
 import { LoginComponent } from "./components/login/login.component";
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
-import { InpcIdComponent } from './components/inpc-id/inpc-id.component';
+import { InpcIdComponent } from "./components/inpc-id/inpc-id.component";
 
 @NgModule({
-  declarations: [AppComponent, InpcComponent, LoginComponent, NavbarComponent, InpcIdComponent],
+  declarations: [
+    AppComponent,
+    InpcComponent,
+    LoginComponent,
+    NavbarComponent,
+    InpcIdComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

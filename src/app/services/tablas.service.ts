@@ -28,6 +28,13 @@ export class TablasService {
     });
   }
 
+  getRequestForStatus(status: string) {
+    this.createHeader();
+    return this.http.get(`${this.api_url}/solicitud/listPorStatus/${status}`, {
+      headers: this.headers
+    });
+  }
+
   postNewRequest(req: any) {
     this.createHeader();
     return this.http.post(`${this.api_url}/solicitud/add`, req, {

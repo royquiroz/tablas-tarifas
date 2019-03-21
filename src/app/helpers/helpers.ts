@@ -85,4 +85,23 @@ export class Helpers {
     tipo: "link",
     descripcion: ""
   };
+
+  tabs: any[] = [
+    {
+      label: "Nuevas",
+      value: "1"
+    },
+    {
+      label: "Pendientes Revision 1",
+      value: "2"
+    },
+    {
+      label: "Pendientes Revision 2",
+      value: "3"
+    },
+    {
+      label: "Aprobadas",
+      value: "4"
+    }
+  ];
 }

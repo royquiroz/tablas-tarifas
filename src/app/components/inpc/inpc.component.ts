@@ -16,12 +16,13 @@ moment.locale("es");
 })
 export class InpcComponent implements OnInit {
   meses = this.helpers.meses;
+  tabs = this.helpers.tabs;
   info = this.helpers.informacion;
   enlace = this.helpers.enlace;
 
   requests: any[] = [];
   request: any = {};
-  id_request: number = 64;
+  id_request: number;
 
   isShowRequests: boolean = false;
   hasLink: boolean = false;
@@ -36,7 +37,8 @@ export class InpcComponent implements OnInit {
 
   ngOnInit() {
     this.userFillForm();
-    this.allRequests();
+    this.requestsForStatus("1");
+    //this.allRequests();
     this.info[0].where[0].valor = moment().format("YYYY");
     this.info[0].valores[0].nombre = `m0${moment().month()}`;
   }
@@ -47,9 +49,19 @@ export class InpcComponent implements OnInit {
     });
   }
 
+  requestsForStatus(status: string) {
+    console.log("se ests ejecutando", status);
+
+    this.tablas.getRequestForStatus(status).subscribe((data: any) => {
+      this.requests = data.result.reverse();
+      console.log(this.requests);
+    });
+  }
+
   allRequests() {
     this.tablas.getAllRequest().subscribe((data: any) => {
       this.requests = data.result.reverse();
+      console.log(this.requests);
     });
   }
 
@@ -63,13 +75,12 @@ export class InpcComponent implements OnInit {
     } else {
       this.openSnackBar("El valor del inpc no puede ser 0", "Cerrar");
     }
-    this.allRequests();
+    this.requestsForStatus("1");
   }
 
   newLink() {
     this.enlace.solicitude_id = this.id_request;
     this.tablas.postNewLink(this.enlace).subscribe((data: any) => {
-      console.log(data);
       this.hasLink = data.response;
       this.openSnackBar(data.message, "Cerrar");
     });
