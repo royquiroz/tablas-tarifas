@@ -66,10 +66,10 @@ export class InpcIdComponent implements OnInit {
   }
 
   getLinks() {
-    this.tablas.getAllLinks().subscribe((data: any) => {
-      this.links = data.result.filter(
-        (link: any) => link.solicitude_id === this.id
-      );
+    this.tablas.getLinksId(this.id).subscribe((data: any) => {
+      console.log(data);
+
+      data.result === null ? (this.links = []) : (this.links = data.result);
       console.log(this.links);
     });
   }

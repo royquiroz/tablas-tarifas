@@ -70,6 +70,13 @@ export class TablasService {
     });
   }
 
+  getLinksId(id: string) {
+    this.createHeader();
+    return this.http.get(`${this.api_url}/solicitud/enlaces/${id}`, {
+      headers: this.headers
+    });
+  }
+
   postNegation(req: any) {
     this.createHeader();
     return this.http.post(`${this.api_url}/solicitud/denegar`, req, {

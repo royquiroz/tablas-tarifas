@@ -26,6 +26,7 @@ export class InpcComponent implements OnInit {
 
   isShowRequests: boolean = false;
   hasLink: boolean = false;
+  loadingList: boolean = false;
 
   constructor(
     private tablas: TablasService,
@@ -51,10 +52,12 @@ export class InpcComponent implements OnInit {
 
   requestsForStatus(status: string) {
     console.log("se ests ejecutando", status);
+    this.loadingList = true;
 
     this.tablas.getRequestForStatus(status).subscribe((data: any) => {
       this.requests = data.result.reverse();
       console.log(this.requests);
+      this.loadingList = false;
     });
   }
 
