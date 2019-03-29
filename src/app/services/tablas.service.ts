@@ -90,4 +90,11 @@ export class TablasService {
       headers: this.headers
     });
   }
+
+  postUdis(req: any) {
+    this.createHeader();
+    return this.http.post(`${this.api_url}/solicitud/addUDIS`, req, {
+      headers: this.headers
+    });
+  }
 }
