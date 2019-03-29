@@ -16,7 +16,8 @@ import { InpcComponent } from "./components/inpc/inpc.component";
 import { LoginComponent } from "./components/login/login.component";
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
 import { InpcIdComponent } from "./components/inpc-id/inpc-id.component";
-import { LoadingComponent } from './components/shared/loading/loading.component';
+import { LoadingComponent } from "./components/shared/loading/loading.component";
+import { UdisComponent } from "./components/udis/udis.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     LoginComponent,
     NavbarComponent,
     InpcIdComponent,
-    LoadingComponent
+    LoadingComponent,
+    UdisComponent
   ],
   imports: [
     BrowserModule,
