@@ -15,9 +15,14 @@
         ></textarea>
         <label for="form7">Pegar tabla de UDIS</label>
       </div>
-      <button type="button" class="btn btn-success" (click)="newLoadUdis()">
-        Enviar
+      <button *ngIf="!id_request" type="button" class="btn btn-primary" (click)="newLoadUdis()">
+        Guardar
       </button>
+      <app-link
+        *ngIf="id_request && !hasLink"
+        (hasLink)="hasLink = $event"
+        [id_request]="id_request"
+      ></app-link>
     </div>
     <div class="col-5">
       <pre>

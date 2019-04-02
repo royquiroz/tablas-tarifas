@@ -7,7 +7,9 @@
 
   <div *ngIf="!loading" class="row">
     <div class="col-4 offset-md-1">
-      <app-edit (isEditable)="editFields($event)"></app-edit>
+      <button mat-icon-button color="primary">
+        <mdb-icon fas icon="pencil-alt" size="2x" (click)="editFields()"></mdb-icon>
+      </button>
       <app-advance (updateData)="getRequest()" [id]="id"></app-advance>
       <app-cancel [id]="id"></app-cancel>
       <div class="inpc-form">
@@ -68,6 +70,7 @@
           >
             Modificar
           </button>
+          <app-link *ngIf="!isEditable" [id_request]="id"></app-link>
         </form>
       </div>
     </div>

@@ -22,7 +22,7 @@ export class InpcComponent implements OnInit {
 
   requests: any[] = [];
   request: any = {};
-  id_request: number = 66;
+  id_request: number;
 
   isShowRequests: boolean = false;
   hasLink: boolean = false;
@@ -83,8 +83,11 @@ export class InpcComponent implements OnInit {
 
   catchRequest(req: any) {
     console.log(req.cat_solicitude_id);
+    const requestId = parseInt(req.cat_solicitude_id)
+    
+    requestId === 4 ? this.router.navigate([`inpc/${req.solicitude_id}`]) : this.router.navigate([`udis/${req.solicitude_id}`]); 
 
-    this.router.navigate([`inpc/${req.solicitude_id}`]);
+    //this.router.navigate([`inpc/${req.solicitude_id}`]);
   }
 
   openSnackBar(message: string, action: string) {

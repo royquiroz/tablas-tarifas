@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "app-edit",
@@ -6,9 +6,6 @@ import { Component, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./edit.component.css"]
 })
 export class EditComponent {
-  @Output() isEditable: EventEmitter<boolean>;
-
-  constructor() {
-    this.isEditable = new EventEmitter();
-  }
+  
+  constructor() {}
 }

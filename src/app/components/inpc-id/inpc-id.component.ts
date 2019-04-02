@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MatSnackBar } from "@angular/material";
 
 import { TablasService } from "src/app/services/tablas.service";
 import { Helpers } from "../../helpers/helpers";
@@ -25,7 +24,6 @@ export class InpcIdComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tablas: TablasService,
-    private snackBar: MatSnackBar,
     private helpers: Helpers
   ) {}
 

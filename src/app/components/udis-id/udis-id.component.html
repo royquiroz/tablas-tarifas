@@ -1,0 +1,43 @@
+<div class="container">
+  <div *ngIf="loading" class="row">
+    <div class="col-2 offset-md-5">
+      <app-loading></app-loading>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="row">
+    <div class="col-5">
+      <button mat-icon-button color="primary">
+        <mdb-icon fas icon="pencil-alt" size="2x" (click)="editFields()"></mdb-icon>
+      </button>
+      <app-advance (updateData)="getRequest()" [id]="id"></app-advance>
+      <app-cancel [id]="id"></app-cancel>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Fecha" [value]="fecha" [disabled]="isEditable"/>
+        </mat-form-field>
+
+        <div class="md-form">
+          <textarea
+            type="text"
+            id="form7"
+            class="md-textarea md-textarea-auto form-control"
+            mdbInput
+            [(ngModel)]="textoUDIS"
+            [disabled]="isEditable"
+          ></textarea>
+          <label for="form7">Pegar tabla de UDIS</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-m5  offset-md-1">
+      <p>
+        r1: {{ request.usuario_id_revision_1 }} r2:
+        {{ request.usuario_id_revision_2 }} ap:
+        {{ request.usuario_id_aprobado }}
+      </p>
+      <app-links [id]="id"></app-links>
+      <app-cancels [id]="id"></app-cancels>
+    </div>
+  </div>
+</div>

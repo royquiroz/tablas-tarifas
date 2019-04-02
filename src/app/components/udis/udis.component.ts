@@ -14,6 +14,9 @@ moment.locale("es");
 })
 export class UdisComponent implements OnInit {
   request: any = {};
+  id_request: number;
+
+  hasLink: boolean = false;
 
   constructor(
     private tablas: TablasService,
@@ -35,10 +38,10 @@ export class UdisComponent implements OnInit {
 
   async newLoadUdis() {
     await this.limpiar();
-    this.tablas.postUdis(this.request).subscribe((data: any) => {
-      console.log(this.request);
-
+    this.tablas.postNewRequest(this.request).subscribe((data: any) => {
       console.log(data);
+
+      this.id_request = parseInt(data.result);
       !data.response
         ? this.openSnackBar(data.message, "Cerrar")
         : this.openSnackBar(data.response, "Cerrar");
@@ -46,9 +49,11 @@ export class UdisComponent implements OnInit {
   }
 
   limpiar() {
-    this.request.textoUDIS = this.request.textoUDIS.replace(/\t/g, "\\t");
-    this.request.textoUDIS = this.request.textoUDIS.replace(/\n/g, "\\n");
-    this.request.textoUDIS = this.request.textoUDIS.replace(/"/g, "\\'");
+    let datos;
+    datos = this.request.textoUDIS.replace(/\t/g, "\\t");
+    datos = this.request.textoUDIS.replace(/\n/g, "\\n");
+    datos = this.request.textoUDIS.replace(/"/g, "\\'");
+    this.request.datos = datos
   }
 
   openSnackBar(message: string, action: string) {
