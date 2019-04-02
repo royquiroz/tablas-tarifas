@@ -8,7 +8,8 @@ import { Observable, throwError } from "rxjs";
   providedIn: "root"
 })
 export class AuthService {
-  api_url: string = "http://racootest.com/tt/loginRacoo/public";
+  //api_url: string = "http://racootest.com/tt/loginRacoo/public";
+  api_url: string = "http://insolit-sd.com/racooTablas/loginRacoo/public";
 
   constructor(private http: HttpClient) {
     console.log("Auth Service Listo");

@@ -6,7 +6,8 @@ import { map } from "rxjs/operators";
   providedIn: "root"
 })
 export class TablasService {
-  api_url: string = "http://racootest.com/tt/tablasRacoo/public";
+  //api_url: string = "http://racootest.com/tt/tablasRacoo/public";
+  api_url: string = "http://insolit-sd.com/racooTablas/tablasRacoo/public";
 
   headers: any = {
     //"Content-Type": "application/x-www-form-urlencoded",
@@ -70,7 +71,7 @@ export class TablasService {
     });
   }
 
-  getLinksId(id: string) {
+  getLinksId(id: number) {
     this.createHeader();
     return this.http.get(`${this.api_url}/solicitud/enlaces/${id}`, {
       headers: this.headers

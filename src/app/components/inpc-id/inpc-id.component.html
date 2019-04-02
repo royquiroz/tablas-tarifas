@@ -7,20 +7,9 @@
 
   <div *ngIf="!loading" class="row">
     <div class="col-4 offset-md-1">
-      <button mat-icon-button color="primary">
-        <mdb-icon
-          fas
-          icon="pencil-alt"
-          size="2x"
-          (click)="editFields()"
-        ></mdb-icon>
-      </button>
-      <button mat-icon-button color="accent" (click)="revision()">
-        <mdb-icon fas icon="angle-double-right" size="2x"></mdb-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="basicModal.show()">
-        <mdb-icon fas icon="ban" size="2x"></mdb-icon>
-      </button>
+      <app-edit (isEditable)="editFields($event)"></app-edit>
+      <app-advance (updateData)="getRequest()" [id]="id"></app-advance>
+      <app-cancel [id]="id"></app-cancel>
       <div class="inpc-form">
         <form class="example-form">
           <div>
@@ -81,62 +70,6 @@
           </button>
         </form>
       </div>
-
-      <!-- Modal negacion-->
-      <div
-        mdbModal
-        #basicModal="mdbModal"
-        class="modal fade"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="myBasicModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button
-                type="button"
-                class="close pull-right"
-                aria-label="Close"
-                (click)="basicModal.hide()"
-              >
-                <span aria-hidden="true">×</span>
-              </button>
-              <h4 class="modal-title w-100" id="myModalLabel">
-                Descripción de la cancelacion
-              </h4>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="md-form">
-                  <textarea
-                    type="text"
-                    id="form7"
-                    class="md-textarea form-control"
-                    name="descripcion"
-                    [(ngModel)]="negacion.descripcion"
-                    mdbInput
-                  ></textarea>
-                  <label for="form7">Descripción</label>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                mdbBtn
-                color="danger"
-                class="relative waves-light"
-                mdbWavesEffect
-                (click)="negation(); basicModal.hide()"
-              >
-                Cancelar solicitud
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="col-m5">
       <p>
@@ -144,24 +77,8 @@
         {{ request.usuario_id_revision_2 }} ap:
         {{ request.usuario_id_aprobado }}
       </p>
-      <span *ngIf="links.length <= 0">No hay enlaces en la solicitud</span>
-      <ul>
-        <li *ngFor="let link of links">
-          <b>Tipo:</b> {{ link.tipo }} <b>Descripcion:</b>
-          {{ link.descripcion }}
-          <a [href]="link.enlace" target="_blank">enlace</a>
-        </li>
-      </ul>
-      <div
-        *ngFor="let negation of negations"
-        class="alert alert-danger"
-        role="alert"
-      >
-        {{ negation.descripcion }}
-        <p class="p-alert">
-          <b>Fecha:</b> {{ negation.fecha_creacion | date: "shortDate" }}
-        </p>
-      </div>
+      <app-links [id]="id"></app-links>
+      <app-cancels [id]="id"></app-cancels>
     </div>
   </div>
 </div>

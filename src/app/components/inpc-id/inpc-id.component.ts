@@ -17,13 +17,6 @@ export class InpcIdComponent implements OnInit {
   id: any;
   request: any = {};
   info: any[] = [];
-  links: any[] = [];
-  negations: any[] = [];
-
-  negacion: any = {
-    solicitude_id: "",
-    descripcion: ""
-  };
 
   isEditable: boolean = true;
 
@@ -41,8 +34,6 @@ export class InpcIdComponent implements OnInit {
       this.id = params.id;
     });
     this.getRequest();
-    this.getLinks();
-    this.getNegations();
   }
 
   getRequest() {
@@ -53,50 +44,7 @@ export class InpcIdComponent implements OnInit {
     });
   }
 
-  revision() {
-    let id = { solicitude_id: this.id };
-    this.tablas.postRevision(id).subscribe((data: any) => {
-      console.log(data);
-
-      if (!data.response) {
-        this.openSnackBar(data.message, "Cerrar");
-      }
-      this.getRequest();
-    });
-  }
-
-  getLinks() {
-    this.tablas.getLinksId(this.id).subscribe((data: any) => {
-      console.log(data);
-
-      data.result === null ? (this.links = []) : (this.links = data.result);
-      console.log(this.links);
-    });
-  }
-
-  negation() {
-    this.negacion.solicitude_id = this.id;
-    console.log(this.negacion);
-
-    this.tablas.postNegation(this.negacion).subscribe((data: any) => {
-      console.log(data);
-    });
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 5000
-    });
-  }
-
   editFields() {
     this.isEditable = !this.isEditable;
-  }
-
-  getNegations() {
-    this.tablas.getAllNegations(this.id).subscribe((data: any) => {
-      this.negations = data.result;
-      console.log(data);
-    });
   }
 }

@@ -1,0 +1,59 @@
+<button mat-icon-button color="warn" (click)="basicModal.show()">
+  <mdb-icon fas icon="ban" size="2x"></mdb-icon>
+</button>
+
+<!-- Modal negacion-->
+<div
+  mdbModal
+  #basicModal="mdbModal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close pull-right"
+          aria-label="Close"
+          (click)="basicModal.hide()"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">
+          Descripción de la cancelacion
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="md-form">
+            <textarea
+              type="text"
+              id="form7"
+              class="md-textarea form-control"
+              name="descripcion"
+              [(ngModel)]="negacion.descripcion"
+              mdbInput
+            ></textarea>
+            <label for="form7">Descripción</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          mdbBtn
+          color="danger"
+          class="relative waves-light"
+          mdbWavesEffect
+          (click)="negation(); basicModal.hide()"
+        >
+          Cancelar solicitud
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

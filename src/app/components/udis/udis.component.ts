@@ -33,7 +33,7 @@ export class UdisComponent implements OnInit {
     });
   }
 
-  newLoadUdis() {
+  async newLoadUdis() {
     await this.limpiar();
     this.tablas.postUdis(this.request).subscribe((data: any) => {
       console.log(this.request);

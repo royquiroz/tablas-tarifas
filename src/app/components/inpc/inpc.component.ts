@@ -22,7 +22,7 @@ export class InpcComponent implements OnInit {
 
   requests: any[] = [];
   request: any = {};
-  id_request: number;
+  id_request: number = 66;
 
   isShowRequests: boolean = false;
   hasLink: boolean = false;
@@ -81,15 +81,9 @@ export class InpcComponent implements OnInit {
     this.requestsForStatus("1");
   }
 
-  newLink() {
-    this.enlace.solicitude_id = this.id_request;
-    this.tablas.postNewLink(this.enlace).subscribe((data: any) => {
-      this.hasLink = data.response;
-      this.openSnackBar(data.message, "Cerrar");
-    });
-  }
-
   catchRequest(req: any) {
+    console.log(req.cat_solicitude_id);
+
     this.router.navigate([`inpc/${req.solicitude_id}`]);
   }
 

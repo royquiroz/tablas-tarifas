@@ -1,0 +1,6 @@
+<div *ngFor="let negation of negations" class="alert alert-danger" role="alert">
+  {{ negation.descripcion }}
+  <p class="p-alert">
+    <b>Fecha:</b> {{ negation.fecha_creacion | date: "shortDate" }}
+  </p>
+</div>
