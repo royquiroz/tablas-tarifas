@@ -13,7 +13,12 @@ moment.locale("es");
   styleUrls: ["./udis.component.css"]
 })
 export class UdisComponent implements OnInit {
-  request: any = {};
+  request: any = {
+    informacion: {
+      fecha: "",
+      datos: ""
+    }
+  };
   id_request: number;
 
   hasLink: boolean = false;
@@ -38,6 +43,7 @@ export class UdisComponent implements OnInit {
 
   async newLoadUdis() {
     await this.limpiar();
+    console.log(this.request.informacion);
     this.tablas.postNewRequest(this.request).subscribe((data: any) => {
       console.log(data);
 
@@ -49,11 +55,12 @@ export class UdisComponent implements OnInit {
   }
 
   limpiar() {
-    let datos;
+    let datos: string;
     datos = this.request.textoUDIS.replace(/\t/g, "\\t");
     datos = this.request.textoUDIS.replace(/\n/g, "\\n");
     datos = this.request.textoUDIS.replace(/"/g, "\\'");
-    this.request.datos = datos
+    this.request.informacion.datos = datos;
+    this.request.informacion.fecha = this.request.fecha;
   }
 
   openSnackBar(message: string, action: string) {
