@@ -16,7 +16,7 @@ export class UdisComponent implements OnInit {
   request: any = {
     informacion: {
       fecha: "",
-      datos: ""
+      textoUDIS: ""
     }
   };
   id_request: number;
@@ -59,8 +59,9 @@ export class UdisComponent implements OnInit {
     datos = this.request.textoUDIS.replace(/\t/g, "\\t");
     datos = this.request.textoUDIS.replace(/\n/g, "\\n");
     datos = this.request.textoUDIS.replace(/"/g, "\\'");
-    this.request.informacion.datos = datos;
+    this.request.informacion.textoUDIS = datos;
     this.request.informacion.fecha = this.request.fecha;
+    this.request.informacion = JSON.stringify(this.request.informacion);
   }
 
   openSnackBar(message: string, action: string) {
