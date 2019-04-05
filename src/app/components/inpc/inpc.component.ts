@@ -17,7 +17,7 @@ moment.locale("es");
 export class InpcComponent implements OnInit {
   meses = this.helpers.meses;
   tabs = this.helpers.tabs;
-  info = this.helpers.informacion;
+  info = this.helpers.inpc;
   enlace = this.helpers.enlace;
 
   requests: any[] = [];
@@ -83,9 +83,15 @@ export class InpcComponent implements OnInit {
 
   catchRequest(req: any) {
     console.log(req.cat_solicitude_id);
-    const requestId = parseInt(req.cat_solicitude_id)
-    
-    requestId === 4 ? this.router.navigate([`inpc/${req.solicitude_id}`]) : this.router.navigate([`udis/${req.solicitude_id}`]); 
+    const requestId = parseInt(req.cat_solicitude_id);
+
+    if (requestId === 4) {
+      this.router.navigate([`inpc/${req.solicitude_id}`]);
+    } else if (requestId === 5) {
+      this.router.navigate([`udis/${req.solicitude_id}`]);
+    } else {
+      this.router.navigate([`recargos/${req.solicitude_id}`]);
+    }
 
     //this.router.navigate([`inpc/${req.solicitude_id}`]);
   }

@@ -25,6 +25,8 @@ import { LinksComponent } from './components/labels/links/links.component';
 import { CancelsComponent } from './components/labels/cancels/cancels.component';
 import { EditComponent } from './components/buttons/edit/edit.component';
 import { UdisIdComponent } from './components/udis-id/udis-id.component';
+import { RecargosComponent } from './components/recargos/recargos.component';
+import { RecargosIdComponent } from './components/recargos-id/recargos-id.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { UdisIdComponent } from './components/udis-id/udis-id.component';
     LinksComponent,
     CancelsComponent,
     EditComponent,
-    UdisIdComponent
+    UdisIdComponent,
+    RecargosComponent,
+    RecargosIdComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,85 @@
+<div class="container">
+  <h3>
+    <strong>Cargar Recargos</strong>
+  </h3>
+  <div class="row">
+    <div class="col-3">
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="año"
+          class="form-control"
+          [(ngModel)]="info.parametros[0].anio"
+        />
+        <label for="año">Año</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <mat-form-field class="select-width">
+        <mat-label>Mes</mat-label>
+        <mat-select [(value)]="info.parametros[1].mes">
+          <mat-option *ngFor="let mes of meses" value="{{ mes.indice }}">
+            {{ mes.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div *ngFor="let recargo of info.parametros[3].recargos" class="row">
+    <div class="col-1">
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="entidad"
+          class="form-control"
+          [(ngModel)]="recargo.entidad"
+        />
+        <label for="entidad">Entidad</label>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="mora"
+          class="form-control"
+          [(ngModel)]="recargo.mora"
+        />
+        <label for="mora">Mora</label>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="plazo"
+          class="form-control"
+          [(ngModel)]="recargo.plazo"
+        />
+        <label for="plazo">Plazo</label>
+      </div>
+    </div>
+  </div>
+  <button
+    *ngIf="!id_request"
+    type="button"
+    class="btn btn-primary"
+    (click)="newRequest()"
+  >
+    Guardar
+  </button>
+  <app-link
+    *ngIf="id_request && !hasLink"
+    (hasLink)="hasLink = $event"
+    [id_request]="id_request"
+  ></app-link>
+  <pre>
+    {{ info | json }}
+  </pre>
+</div>

@@ -30,7 +30,7 @@ export class UdisComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.request.cat_solicitude_id = "5";
+    this.request.cat_solicitude_id = 5;
     this.request.fecha = moment(new Date()).format("YYYY/MM/DD");
     this.userFillForm();
   }

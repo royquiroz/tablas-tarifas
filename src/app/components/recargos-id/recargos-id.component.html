@@ -1,0 +1,95 @@
+<div class="container">
+  <div *ngIf="loading" class="row">
+    <div class="col-2 offset-md-5">
+      <app-loading></app-loading>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="row">
+    <div class="col-3">
+      <button mat-icon-button color="primary">
+        <mdb-icon
+          fas
+          icon="pencil-alt"
+          size="2x"
+          (click)="editFields()"
+        ></mdb-icon>
+      </button>
+      <app-advance (updateData)="getRequest()" [id]="id"></app-advance>
+      <app-cancel [id]="id"></app-cancel>
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="año"
+          class="form-control"
+          [(ngModel)]="info.parametros[0].anio"
+          [disabled]="isEditable"
+        />
+        <label for="año">Año</label>
+      </div>
+    </div>
+    <div class="col-m5 offset-md-1">
+      <p>
+        r1: {{ request.usuario_id_revision_1 }} r2:
+        {{ request.usuario_id_revision_2 }} ap:
+        {{ request.usuario_id_aprobado }}
+      </p>
+      <app-links [id]="id"></app-links>
+      <app-cancels [id]="id"></app-cancels>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <mat-form-field class="select-width">
+        <mat-label>Mes</mat-label>
+        <mat-select [value]="info.parametros[1].mes" [disabled]="isEditable">
+          <mat-option *ngFor="let mes of meses" value="{{ mes.indice }}">
+            {{ mes.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div *ngFor="let recargo of info.parametros[3].recargos" class="row">
+    <div class="col-1">
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="entidad"
+          class="form-control"
+          [(ngModel)]="recargo.entidad"
+          [disabled]="isEditable"
+        />
+        <label for="entidad">Entidad</label>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="mora"
+          class="form-control"
+          [(ngModel)]="recargo.mora"
+          [disabled]="isEditable"
+        />
+        <label for="mora">Mora</label>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="md-form">
+        <input
+          mdbInput
+          type="text"
+          id="plazo"
+          class="form-control"
+          [(ngModel)]="recargo.plazo"
+          [disabled]="isEditable"
+        />
+        <label for="plazo">Plazo</label>
+      </div>
+    </div>
+  </div>
+</div>

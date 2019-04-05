@@ -7,6 +7,8 @@ import { InpcComponent } from "./components/inpc/inpc.component";
 import { InpcIdComponent } from "./components/inpc-id/inpc-id.component";
 import { UdisComponent } from "./components/udis/udis.component";
 import { UdisIdComponent } from "./components/udis-id/udis-id.component";
+import { RecargosComponent } from "./components/recargos/recargos.component";
+import { RecargosIdComponent } from "./components/recargos-id/recargos-id.component";
 
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
@@ -18,6 +20,12 @@ const routes: Routes = [
   { path: "inpc/:id", component: InpcIdComponent, canActivate: [AuthGuard] },
   { path: "udis", component: UdisComponent, canActivate: [AuthGuard] },
   { path: "udis/:id", component: UdisIdComponent, canActivate: [AuthGuard] },
+  { path: "recargos", component: RecargosComponent, canActivate: [AuthGuard] },
+  {
+    path: "recargos/:id",
+    component: RecargosIdComponent,
+    canActivate: [AuthGuard]
+  },
   { path: "**", pathMatch: "full", redirectTo: "/inpc" }
 ];
 

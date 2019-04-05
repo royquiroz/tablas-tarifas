@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
 })
 export class TablasService {
   //api_url: string = "http://racootest.com/tt/tablasRacoo/public";
-  api_url: string = "http://localhost/tablasRacoo/public";
+  api_url: string = "http://insolit-sd.com/racooTablas/tablasRacoo/public";
 
   headers: any = {
     //"Content-Type": "application/x-www-form-urlencoded",

@@ -2,22 +2,27 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { TablasService } from "src/app/services/tablas.service";
-
-import * as moment from "moment";
-moment.locale("es");
+import { Helpers } from "../../helpers/helpers";
 
 @Component({
-  selector: "app-udis-id",
-  templateUrl: "./udis-id.component.html",
-  styleUrls: ["./udis-id.component.css"]
+  selector: "app-recargos-id",
+  templateUrl: "./recargos-id.component.html",
+  styleUrls: ["./recargos-id.component.css"]
 })
-export class UdisIdComponent implements OnInit {
+export class RecargosIdComponent implements OnInit {
+  meses = this.helpers.meses;
+
   id: number;
   request: any = {};
+  info: any = {};
   loading: boolean = true;
   isEditable: boolean = true;
 
-  constructor(private route: ActivatedRoute, private tablas: TablasService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private tablas: TablasService,
+    private helpers: Helpers
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -30,7 +35,8 @@ export class UdisIdComponent implements OnInit {
     this.tablas.getIdRequest(this.id).subscribe((data: any) => {
       console.log(data.result[0]);
 
-      this.request = JSON.parse(data.result[0].informacion);
+      this.request = data.result[0];
+      this.info = JSON.parse(data.result[0].informacion);
       this.loading = false;
     });
   }
