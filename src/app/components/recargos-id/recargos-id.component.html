@@ -92,4 +92,6 @@
       </div>
     </div>
   </div>
+  <app-edit *ngIf="!isEditable" [data]="request" [info]="info"></app-edit>
+  <app-link *ngIf="!isEditable" [id_request]="id"></app-link>
 </div>

@@ -8,7 +8,12 @@
   <div *ngIf="!loading" class="row">
     <div class="col-4 offset-md-1">
       <button mat-icon-button color="primary">
-        <mdb-icon fas icon="pencil-alt" size="2x" (click)="editFields()"></mdb-icon>
+        <mdb-icon
+          fas
+          icon="pencil-alt"
+          size="2x"
+          (click)="editFields()"
+        ></mdb-icon>
       </button>
       <app-advance (updateData)="getRequest()" [id]="id"></app-advance>
       <app-cancel [id]="id"></app-cancel>
@@ -60,16 +65,11 @@
             />
             <label>INPC</label>
           </div>
-          <button
+          <app-edit
             *ngIf="!isEditable"
-            type="submit"
-            mdbBtn
-            color="primary"
-            mdbWavesEffect
-            (click)="newRequest()"
-          >
-            Modificar
-          </button>
+            [data]="request"
+            [info]="info"
+          ></app-edit>
           <app-link *ngIf="!isEditable" [id_request]="id"></app-link>
         </form>
       </div>

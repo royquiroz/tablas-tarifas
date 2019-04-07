@@ -98,4 +98,11 @@ export class TablasService {
       headers: this.headers
     });
   }
+
+  updateRequest(id: number, req: any) {
+    this.createHeader();
+    return this.http.put(`${this.api_url}/solicitud/update/${id}`, req, {
+      headers: this.headers
+    });
+  }
 }

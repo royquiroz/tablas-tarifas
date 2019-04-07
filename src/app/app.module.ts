@@ -18,15 +18,15 @@ import { NavbarComponent } from "./components/shared/navbar/navbar.component";
 import { InpcIdComponent } from "./components/inpc-id/inpc-id.component";
 import { LoadingComponent } from "./components/shared/loading/loading.component";
 import { UdisComponent } from "./components/udis/udis.component";
-import { CancelComponent } from './components/buttons/cancel/cancel.component';
-import { AdvanceComponent } from './components/buttons/advance/advance.component';
-import { LinkComponent } from './components/buttons/link/link.component';
-import { LinksComponent } from './components/labels/links/links.component';
-import { CancelsComponent } from './components/labels/cancels/cancels.component';
-import { EditComponent } from './components/buttons/edit/edit.component';
-import { UdisIdComponent } from './components/udis-id/udis-id.component';
-import { RecargosComponent } from './components/recargos/recargos.component';
-import { RecargosIdComponent } from './components/recargos-id/recargos-id.component';
+import { UdisIdComponent } from "./components/udis-id/udis-id.component";
+import { RecargosComponent } from "./components/recargos/recargos.component";
+import { RecargosIdComponent } from "./components/recargos-id/recargos-id.component";
+import { CancelComponent } from "./components/buttons/cancel/cancel.component";
+import { AdvanceComponent } from "./components/buttons/advance/advance.component";
+import { LinkComponent } from "./components/buttons/link/link.component";
+import { EditComponent } from "./components/buttons/edit/edit.component";
+import { LinksComponent } from "./components/labels/links/links.component";
+import { CancelsComponent } from "./components/labels/cancels/cancels.component";
 
 @NgModule({
   declarations: [

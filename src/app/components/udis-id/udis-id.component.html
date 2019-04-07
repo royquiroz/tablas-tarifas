@@ -22,7 +22,7 @@
           <input
             matInput
             placeholder="Fecha"
-            [value]="request.fecha"
+            [value]="info.fecha"
             [disabled]="isEditable"
           />
         </mat-form-field>
@@ -33,12 +33,14 @@
             id="form7"
             class="md-textarea md-textarea-auto form-control"
             mdbInput
-            [(ngModel)]="request.textoUDIS"
+            [(ngModel)]="info.textoUDIS"
             [disabled]="isEditable"
           ></textarea>
           <label for="form7">Pegar tabla de UDIS</label>
         </div>
       </div>
+      <app-edit *ngIf="!isEditable" [data]="request" [info]="info"></app-edit>
+      <app-link *ngIf="!isEditable" [id_request]="id"></app-link>
     </div>
     <div class="col-m5  offset-md-1">
       <p>

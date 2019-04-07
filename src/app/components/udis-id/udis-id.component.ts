@@ -14,6 +14,8 @@ moment.locale("es");
 export class UdisIdComponent implements OnInit {
   id: number;
   request: any = {};
+  info: any[] = [];
+
   loading: boolean = true;
   isEditable: boolean = true;
 
@@ -30,7 +32,8 @@ export class UdisIdComponent implements OnInit {
     this.tablas.getIdRequest(this.id).subscribe((data: any) => {
       console.log(data.result[0]);
 
-      this.request = JSON.parse(data.result[0].informacion);
+      this.request = data.result[0];
+      this.info = JSON.parse(data.result[0].informacion);
       this.loading = false;
     });
   }
