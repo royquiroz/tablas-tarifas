@@ -2,8 +2,9 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 //Components
-import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { HomeComponent } from "./components/home/home.component";
 import { InpcComponent } from "./components/inpc/inpc.component";
 import { InpcIdComponent } from "./components/inpc-id/inpc-id.component";
 import { UdisComponent } from "./components/udis/udis.component";
@@ -17,6 +18,11 @@ import { AlreadyGuard } from "./guards/already.guard";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent, canActivate: [AlreadyGuard] },
+  {
+    path: "register",
+    component: RegisterComponent,
+    canActivate: [AlreadyGuard]
+  },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "inpc", component: InpcComponent, canActivate: [AuthGuard] },
   { path: "inpc/:id", component: InpcIdComponent, canActivate: [AuthGuard] },

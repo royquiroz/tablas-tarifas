@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         if (data === true) {
           console.log("Ingresaste exitosamente", data);
-          this.router.navigate(["inpc"]);
+          this.router.navigate(["home"]);
         }
       },
       (err: any) => {
@@ -37,5 +37,9 @@ export class LoginComponent implements OnInit {
 
   notShow() {
     this.ok = !this.ok;
+  }
+
+  register() {
+    this.router.navigate(["register"]);
   }
 }

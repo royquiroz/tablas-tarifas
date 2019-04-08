@@ -7,7 +7,7 @@ import {
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatTableModule
+  MatCardModule
 } from "@angular/material";
 
 import { NgModule } from "@angular/core";
@@ -22,7 +22,7 @@ import { NgModule } from "@angular/core";
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatCardModule
   ],
   exports: [
     MatButtonModule,
@@ -33,7 +33,7 @@ import { NgModule } from "@angular/core";
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatCardModule
   ]
 })
 export class MaterialModule {}

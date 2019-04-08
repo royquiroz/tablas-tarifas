@@ -25,6 +25,17 @@
           <input
             mdbInput
             type="text"
+            id="email"
+            name="email"
+            class="form-control"
+            ngModel
+          />
+          <label for="email">Email</label>
+        </div>
+        <div class="md-form">
+          <input
+            mdbInput
+            type="text"
             id="password"
             name="password"
             class="form-control"
@@ -33,10 +44,7 @@
           <label for="password">Contraseña</label>
         </div>
         <button type="submit" mdbBtn color="success" mdbWavesEffect>
-          Iniciar Sesión
-        </button>
-        <button type="button" mdbBtn color="link" (click)="register()">
-          Registrarse
+          Crear usuario
         </button>
       </form>
     </mat-card>
