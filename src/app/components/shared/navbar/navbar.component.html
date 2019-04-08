@@ -3,15 +3,15 @@
   *ngIf="isAuthenticated()"
 >
   <mdb-navbar-brand>
-    <a class="navbar-brand">
+    <a class="navbar-brand" [routerLink]="['home']">
       <img src="assets/img/logo_racoo.png" height="30" alt="logo_racoo" />
     </a>
   </mdb-navbar-brand>
   <links>
     <ul class="navbar-nav mr-auto mt-lg-0">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['recargos']">
-          Recargos
+        <a class="nav-link" [routerLink]="['inpc']">
+          INPC
         </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
@@ -20,8 +20,8 @@
         </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['inpc']">
-          INPC
+        <a class="nav-link" [routerLink]="['recargos']">
+          Recargos
         </a>
       </li>
     </ul>

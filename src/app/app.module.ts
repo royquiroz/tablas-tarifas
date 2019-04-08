@@ -27,6 +27,7 @@ import { LinkComponent } from "./components/buttons/link/link.component";
 import { EditComponent } from "./components/buttons/edit/edit.component";
 import { LinksComponent } from "./components/labels/links/links.component";
 import { CancelsComponent } from "./components/labels/cancels/cancels.component";
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CancelsComponent } from "./components/labels/cancels/cancels.component"
     EditComponent,
     UdisIdComponent,
     RecargosComponent,
-    RecargosIdComponent
+    RecargosIdComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

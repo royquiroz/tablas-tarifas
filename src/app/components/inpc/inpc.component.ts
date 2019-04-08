@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material";
 
 import { TablasService } from "../../services/tablas.service";
@@ -16,30 +15,24 @@ moment.locale("es");
 })
 export class InpcComponent implements OnInit {
   meses = this.helpers.meses;
-  tabs = this.helpers.tabs;
   info = this.helpers.inpc;
   enlace = this.helpers.enlace;
 
-  requests: any[] = [];
   request: any = {};
   id_request: number;
 
   isShowRequests: boolean = false;
   hasLink: boolean = false;
-  loadingList: boolean = false;
 
   constructor(
     private tablas: TablasService,
     private auth: AuthService,
     private helpers: Helpers,
-    private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.userFillForm();
-    this.requestsForStatus("1");
-    //this.allRequests();
     this.info[0].where[0].valor = moment().format("YYYY");
     this.info[0].valores[0].nombre = `m0${moment().month()}`;
   }
@@ -47,24 +40,6 @@ export class InpcComponent implements OnInit {
   userFillForm() {
     this.auth.getCheckToken().subscribe((data: any) => {
       this.request.usuario_id_responsable = parseInt(data.usuario_id);
-    });
-  }
-
-  requestsForStatus(status: string) {
-    console.log("se ests ejecutando", status);
-    this.loadingList = true;
-
-    this.tablas.getRequestForStatus(status).subscribe((data: any) => {
-      this.requests = data.result.reverse();
-      console.log(this.requests);
-      this.loadingList = false;
-    });
-  }
-
-  allRequests() {
-    this.tablas.getAllRequest().subscribe((data: any) => {
-      this.requests = data.result.reverse();
-      console.log(this.requests);
     });
   }
 
@@ -78,22 +53,6 @@ export class InpcComponent implements OnInit {
     } else {
       this.openSnackBar("El valor del inpc no puede ser 0", "Cerrar");
     }
-    this.requestsForStatus("1");
-  }
-
-  catchRequest(req: any) {
-    console.log(req.cat_solicitude_id);
-    const requestId = parseInt(req.cat_solicitude_id);
-
-    if (requestId === 4) {
-      this.router.navigate([`inpc/${req.solicitude_id}`]);
-    } else if (requestId === 5) {
-      this.router.navigate([`udis/${req.solicitude_id}`]);
-    } else {
-      this.router.navigate([`recargos/${req.solicitude_id}`]);
-    }
-
-    //this.router.navigate([`inpc/${req.solicitude_id}`]);
   }
 
   openSnackBar(message: string, action: string) {
