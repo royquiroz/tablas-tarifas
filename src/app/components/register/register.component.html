@@ -9,17 +9,17 @@
           width="250px"
         />
       </div>
-      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
         <div class="md-form">
           <input
             mdbInput
             type="text"
-            id="username"
-            name="username"
+            id="usuario"
+            name="usuario"
             class="form-control"
             ngModel
           />
-          <label for="username">Nombre de Usuario</label>
+          <label for="usuario">Nombre de Usuario</label>
         </div>
         <div class="md-form">
           <input
@@ -35,13 +35,13 @@
         <div class="md-form">
           <input
             mdbInput
-            type="text"
-            id="password"
-            name="password"
+            type="password"
+            id="clave"
+            name="clave"
             class="form-control"
             ngModel
           />
-          <label for="password">Contraseña</label>
+          <label for="clave">Contraseña</label>
         </div>
         <button type="submit" mdbBtn color="success" mdbWavesEffect>
           Crear usuario

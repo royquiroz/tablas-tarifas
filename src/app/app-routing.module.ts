@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: "register",
     component: RegisterComponent,
-    canActivate: [AlreadyGuard]
+    canActivate: [AuthGuard]
   },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "inpc", component: InpcComponent, canActivate: [AuthGuard] },

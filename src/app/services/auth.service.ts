@@ -11,8 +11,17 @@ export class AuthService {
   //api_url: string = "http://racootest.com/tt/loginRacoo/public";
   api_url: string = "https://insolit-sd.com/racooTablas/loginRacoo/public";
 
+  headers: any = {
+    //"Content-Type": "application/x-www-form-urlencoded",
+    "APP-TOKEN": ""
+  };
+
   constructor(private http: HttpClient) {
     console.log("Auth Service Listo");
+  }
+
+  createHeader() {
+    this.headers["APP-TOKEN"] = localStorage.getItem("currentUser");
   }
 
   login(Usuario: any): Observable<boolean> {
@@ -56,5 +65,12 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem("currentUser");
+  }
+
+  register(user: any) {
+    this.createHeader();
+    return this.http.post(`${this.api_url}/users/add`, user, {
+      headers: this.headers
+    });
   }
 }
