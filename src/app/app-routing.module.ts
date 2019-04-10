@@ -34,11 +34,11 @@ const routes: Routes = [
     component: RecargosIdComponent,
     canActivate: [AuthGuard]
   },
-  { path: "**", pathMatch: "full", redirectTo: "/home" }
+  { path: "**", pathMatch: "full", redirectTo: "home" }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
